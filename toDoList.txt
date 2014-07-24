@@ -1,0 +1,14 @@
+C / C++						Finished?
+-Linkes List					NO
+-Stack						NO
+-Queue						NO
+-Hashtable					NO
+-Binary tree					NO
+
+C#
+-Database project for Ms. Richards		NO
+-Chat server					NO
+
+
+Java
+
