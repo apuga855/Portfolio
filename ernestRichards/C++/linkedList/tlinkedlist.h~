@@ -1,7 +1,7 @@
 /* Alfonso Puga & Ernest Richards */
 
 /* TO DO
- * set up use of previous and head in ListNode
+ * set up use of previous and head
  */
 
 #pragma once
