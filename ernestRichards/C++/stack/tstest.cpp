@@ -1,10 +1,9 @@
-#include <iostream>
 #include <stdio.h>
-#include <sstream>
-#include "listnode.h"
-#include "tlinkedlist.h"
+#include "tstack.h"
 
 using namespace std;
+
+/*
 
 #ifndef TYPE
 #define TYPE char
@@ -14,40 +13,39 @@ using namespace std;
 #define SVAL '~'
 #endif
 
+*/
+
+#ifndef TYPE
+#define TYPE int
+#endif
+
+#ifndef SVAL
+#define SVAL 0
+#endif
+
 int menu();
-void loop(LinkedList<TYPE> & cList1);
+void loop(Stack<TYPE> & cList1);
 
 int main()
 {
-		  LinkedList<TYPE> cList1;
-		  cList1.setDoublyLinked(false);
-		  cList1.setDummyHead(false);
+		  Stack<TYPE> cList1;
 
 		  loop(cList1);
-
-		  /* it works below
-		  LinkedList<TYPE> cList2;
-		  cList2.setDoublyLinked(true);
-		  cList2.setDummyHead(false);
-
-		  loop(cList2);
-		  */
 
 		  return 0;
 }
 
-void loop(LinkedList<TYPE> & cList1)
+void loop(Stack<TYPE> & cList1)
 {
 		  int selection;
-		  LinkedList<ListNode<TYPE> *> * result_list;
+		  LinkedList<ListNode<TYPE> *> * result_list = NULL;
 		  ListNode<TYPE> *result = NULL; // Result of last search
-		  int error;
-		  TYPE c, a;
+		  TYPE c;
 		  char * str = NULL;
 
 		  do
 		  {
-//					 result_list.erase();
+					 //					 result_list.erase();
 					 selection = menu();
 					 printf("\n");
 					 switch(selection)
@@ -76,58 +74,17 @@ void loop(LinkedList<TYPE> & cList1)
 
 								case 2:
 										  c = cList1.getValue();
-										  if (!cList1.empty())
-										  {
-													 do
-													 {
-																error = 0;
-																cout << cList1 << endl;
-																printf("After which element in the list (shown above) would you like to insert the new element? (~ for head insertion): ");
-																cin >> a;
-																while(cin.fail())
-																{
-																		  cin.clear();
-																		  cin.ignore(20, '\n');
-																		  printf("Error: Must enter a valid value.\n");
-																		  printf("Enter a value: ");
-																		  cin >> a;
-																}
-																if (a == SVAL)
-																{
-																		  result = NULL;
-																}
-																else
-																{
-																		  result = cList1.findFirst(a);
-																}
-																if (result || a == SVAL)
-																{
-																		  cList1.insert(c, result); // Insert after last search (or head if no search)
-																}
-																else if (result == NULL && a != SVAL)
-																{
-																		  printf("The element wasn't found in the list.\n");
-																		  error++;
-																}
-													 }
-													 while (error != 0);
-										  }
-										  else
-										  {
-													 cList1.insert(c, result); // Insert after last search (or head if no search)
-										  }
-										  result = NULL;  // Reset result
+										  cList1.push(c); // Insert after last search (or head if no search)
 										  printf("Element inserted into list.\n");
 										  break;
 
 								case 3:
 										  if(cList1.empty())
 										  {
-													 printf("The list is empty. Add an item before searching.\n");
+													 printf("The list is empty. Add an item before dequeuing one.\n");
 													 break;
 										  }
-										  c = cList1.getValue();
-										  cList1.remove(c);
+										  cout << "Popd " << *(cList1.pop()) << " from the queue\n";
 										  break;
 
 								case 4:
@@ -183,11 +140,11 @@ int menu()
 {
 		  int sel;
 
-		  printf("      Welcome to the Linked List Menu\n");
-		  printf("  =======================================\n");
+		  printf("                 Welcome to the Stack Menu\n");
+		  printf("  ========================================================\n");
 		  printf("  1.  Search for first occurance of an element in the list\n");
-		  printf("  2.  Add an element to the list\n");
-		  printf("  3.  Delete an element from the list\n");
+		  printf("  2.  Push an element\n");
+		  printf("  3.  Pop an element\n");
 		  printf("  4.  Print the list\n");
 		  printf("  5.  Print the list with toString\n");
 		  printf("  6.  Search for all occurances of an element in the list\n");
