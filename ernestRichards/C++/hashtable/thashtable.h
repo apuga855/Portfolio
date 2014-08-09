@@ -84,6 +84,32 @@ class Hashtable
 					 int hash2(const int &) const;
 };
 
+/* HERE */
+template <>
+int Hashtable<int>::hash1 (const int & value) const
+{
+		  return ((int)value % (getCapacity()));
+}
+
+template <>
+int Hashtable<double>::hash1 (const double & value) const
+{
+		  return ((int)value % (getCapacity()));
+}
+
+template <>
+int Hashtable<char>::hash1 (const char & value) const
+{
+		  return ((int)value % (getCapacity()));
+}
+
+/* this function assumes T has a getHash() function to return some integer, representative of the data it holds, to be put into the hashtable */
+template <class T>
+int Hashtable<T>::hash1 (const T & value) const
+{
+		  return ((value.getHash()) % (getCapacity()));
+}
+
 template <class T>
 Hashtable<T>::Hashtable()
 {
@@ -196,13 +222,6 @@ bool Hashtable<T>::search (const T & value) const
 					 return (true);
 		  }
 		  return (false);
-}
-
-/* this function assumes an integer for T */
-template <class T>
-int Hashtable<T>::hash1 (const T & value) const
-{
-		  return (value % (getCapacity()));
 }
 
 template <class T>
