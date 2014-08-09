@@ -1,5 +1,7 @@
 #include "init_arrays.h"
 
+using namespace std;
+
 void initArraySentinel (int *a, const unsigned long int size, const int sentinel)
 {
 		  for (unsigned long int i = 0; i < size; i++)
@@ -39,26 +41,19 @@ void initArrayNull (char *a, const unsigned long int size)
 void initArrayRand (int *a, const unsigned long int size)
 {
 		  for (unsigned long int i = 0; i < size; i++)
-					 a[i] = randomInt(1,99);
+					 a[i] = randInt(1,99);
 }
 
 void initArrayRand (double *a, const unsigned long int size)
 {
 		  for (unsigned long int i = 0; i < size; i++)
-					 a[i] = randomDouble(1,99);
+					 a[i] = randDoub(1,99);
 }
 
+/*
 void initArrayRand (char *a, const unsigned long int size)
 {
 		  for (unsigned long int i = 0; i < size; i++)
-					 a[i] = alphaPosition(randomInt(1, 52));
+					 a[i] = alphaPosition(randInt(1, 52));
 }
-
-char alphaPosition (const int & in)
-{
-		  if (in < 27)
-		  {
-					 return ((char)(in + 96));
-		  }
-		  return ((char)(in + 64));
-}
+*/

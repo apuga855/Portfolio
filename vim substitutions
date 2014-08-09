@@ -1,0 +1,23 @@
+thanks to http://vim.wikia.com/wiki/Search_and_replace
+
+
+:%s/cout << .*\zs;\ze/ << flush;/g
+
+find every cout line in the document, add flush onto the end, regardless of text in between cout and semicolon across the entire line
+
+:%s/.* \zs\/\/\ze/\r\/\//g
+
+move end of line comments with double slash to next line
+
+:%s/\zs\n\/\/\ze/\r\/*/
+
+replace start of whack whack comment with /* comment block start
+
+:%s/.*\zs \*\/\n \*\ze/\r */g
+
+this will fix SOME broken existing comment blocks
+
+:%s/\n\/\*.*\zs\n\ze/ *\/\r/g
+
+add terminating star slash to any started comment block on same line as begining mark. this may break some of your existing comments. the previous three substitutions should be used back to back and then a thorough manual review of your code should be performed to fix any broken comment blocks
+
