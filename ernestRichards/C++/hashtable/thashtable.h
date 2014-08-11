@@ -84,7 +84,6 @@ class Hashtable
 					 int hash2(const int &) const;
 };
 
-/* HERE */
 template <>
 int Hashtable<int>::hash1 (const int & value) const
 {
